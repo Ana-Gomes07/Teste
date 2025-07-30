@@ -1,49 +1,60 @@
-# Criar um único mapa mental combinando todos os tópicos
-combined_map = Digraph(comment='IA no Quotidiano e na Educação')
+
+# Mapa Mental: Inteligência Artificial no Quotidiano e na Educação
+# Autor: [Seu Nome]
+# Descrição: Geração de um mapa mental com Graphviz
+
+from graphviz import Digraph
+
+# Criar o diagrama
+diagram = Digraph(comment='IA no Quotidiano e na Educação')
 
 # Nó central
-combined_map.node('IA', 'Inteligência Artificial')
+diagram.node('IA', 'Inteligência Artificial')
 
 # Subtópicos principais
-combined_map.node('Chatbots', 'Chatbots e Assistentes Virtuais')
-combined_map.node('Speech', 'Reconhecimento de Fala')
-combined_map.node('Access', 'Acessibilidade')
-combined_map.node('Edu', 'Educação')
-
-combined_map.edges([('IA', 'Chatbots'), ('IA', 'Speech'), ('IA', 'Access'), ('IA', 'Edu')])
+diagram.node('Chatbots', 'Chatbots e Assistentes Virtuais')
+diagram.node('Speech', 'Reconhecimento de Fala')
+diagram.node('Access', 'Acessibilidade')
+diagram.node('Edu', 'Educação')
+diagram.edges([('IA', 'Chatbots'), ('IA', 'Speech'), ('IA', 'Access'), ('IA', 'Edu')])
 
 # Chatbots
-combined_map.node('CB', 'Chatbots (ChatGPT, Bard, Bing Chat)')
-combined_map.node('AV', 'Assistentes Virtuais (Siri, Alexa, Google Assistant)')
-combined_map.node('Func', 'Funções: agendar, pesquisar, controlar dispositivos')
-combined_map.edges([('Chatbots', 'CB'), ('Chatbots', 'AV'), ('Chatbots', 'Func')])
+diagram.node('CB', 'Chatbots (ChatGPT, Bard, Bing Chat)')
+diagram.node('AV', 'Assistentes Virtuais (Siri, Alexa, Google Assistant)')
+diagram.node('Func', 'Funções: agendar, pesquisar, controlar dispositivos')
+diagram.edges([('Chatbots', 'CB'), ('Chatbots', 'AV'), ('Chatbots', 'Func')])
 
 # Reconhecimento de fala
-combined_map.node('STT', 'Speech-to-Text: Legendas, transcrição')
-combined_map.node('TTS', 'Text-to-Speech: Leitura automática')
-combined_map.edge('Speech', 'STT')
-combined_map.edge('Speech', 'TTS')
+diagram.node('STT', 'Speech-to-Text: Legendas, transcrição')
+diagram.node('TTS', 'Text-to-Speech: Leitura automática')
+diagram.edge('Speech', 'STT')
+diagram.edge('Speech', 'TTS')
 
 # Acessibilidade
-combined_map.node('Leg', 'Legendas Automáticas')
-combined_map.node('Trans', 'Transcrições')
-combined_map.node('LS', 'Avatares de Língua Gestual')
-combined_map.node('Público', 'Pessoas com deficiência auditiva')
-combined_map.edges([('Access', 'Leg'), ('Access', 'Trans'), ('Access', 'LS')])
-combined_map.edge('Leg', 'Público')
-combined_map.edge('Trans', 'Público')
-combined_map.edge('LS', 'Público')
+diagram.node('Leg', 'Legendas Automáticas')
+diagram.node('Trans', 'Transcrições')
+diagram.node('LS', 'Avatares de Língua Gestual')
+diagram.node('Público', 'Pessoas com deficiência auditiva')
+diagram.edges([('Access', 'Leg'), ('Access', 'Trans'), ('Access', 'LS')])
+diagram.edge('Leg', 'Público')
+diagram.edge('Trans', 'Público')
+diagram.edge('LS', 'Público')
 
 # Educação
-combined_map.node('Criação', 'Criação de conteúdos')
-combined_map.node('Revisão', 'Revisão com IAs generativas')
-combined_map.node('Perso', 'Personalização da aprendizagem')
-combined_map.node('Trad', 'Tradução de conteúdos')
-combined_map.node('Imersiva', 'Experiência imersiva com avatares e voz')
-combined_map.edges([('Edu', 'Criação'), ('Edu', 'Revisão'), ('Edu', 'Perso'), ('Edu', 'Trad'), ('Edu', 'Imersiva')])
+diagram.node('Cria', 'Criação de conteúdos')
+diagram.node('Rev', 'Revisão com IAs generativas')
+diagram.node('Perso', 'Personalização da aprendizagem')
+diagram.node('Trad', 'Tradução de conteúdos')
+diagram.node('Imersiva', 'Experiência imersiva com avatares e voz')
+diagram.edges([
+    ('Edu', 'Cria'),
+    ('Edu', 'Rev'),
+    ('Edu', 'Perso'),
+    ('Edu', 'Trad'),
+    ('Edu', 'Imersiva')
+])
 
-# Renderizar o mapa combinado
-combined_filename = "/mnt/data/mapa_IA_Completo"
-combined_map.render(combined_filename, format='png', cleanup=True)
-combined_filename + '.png'
+# Gerar o arquivo
+diagram.render('mapa_IA_Completo', format='png', cleanup=True)
 
+print("Mapa mental gerado como 'mapa_IA_Completo.png'")
